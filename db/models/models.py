@@ -46,7 +46,7 @@ class Venta(Base):
     fecha_venta = Column(Date, nullable=False)
 
     def __repr__(self):
-        return f"Venta id={self.id}, Cliente id: {self.id_cliente}, precio id: {self.precio}, estado id: {self.id_estado}, cantidad: {self.cantidad}, fecha venta: {self.fecha_venta}"
+        return f"Venta id={self.id}, Cliente id: {self.id_cliente}, precio id: {self.id_precio}, estado id: {self.id_estado}, cantidad: {self.cantidad}, fecha venta: {self.fecha_venta}"
 
 
 class Estado(Base):
