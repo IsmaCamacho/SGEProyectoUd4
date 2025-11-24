@@ -67,12 +67,12 @@ def consulta4():
 #5 búsqueda de clientes que hace 3 meses que no realizan una venta.
 def consulta5():
 
-#unica forma encontrada para restar fechas etc
-    hace_3_meses = date.today() - relativedelta(months=3)
+#para restar tres meses
+    hace3Meses = date.today() - relativedelta(months=3)
 
     cliente = (session.query(Cliente)
                .join(Venta, Venta.id_cliente==Cliente.id)
-               .filter(Venta.fecha_venta<hace_3_meses)).all()
+               .filter(Venta.fecha_venta<hace3Meses)).all()
 
     for c in cliente:
         print(c)
