@@ -1,13 +1,39 @@
 #Realizar aquí las consultas
+import matplotlib.pyplot as plt
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 
 from sqlalchemy import extract
-from sqlalchemy.sql.functions import count
+from sqlalchemy.sql.functions import count, func
 
 from db.config import session, Session
 from db.models.models import *
 
+def insertarCliente():
+    print("Has decidido insertar un cliente")
+    nombre=input("Introduce el nombre: ")
+    apellidos=input("Introduce el apellido: ")
+    fechaNacimiento=input("Introduce la fecha de nacimiento Ej: (20-12-2004): ")
+    dni=input("Introduce el DNI: ")
+    email=input("Introduce el email: ")
+    nacionalidad=input("Introduce la nacionalidad: ")
+    telefono=int(input("Introduce el telefono: "))
+    direccion=input("Introduce la direccion: ")
+
+    nuevoCliente = Cliente(
+        nombre=nombre,
+        apellidos=apellidos,
+        fecha_nacimiento=datetime.strptime(fechaNacimiento, "%d-%m-%Y").date(), #pasar la fecha que introduce el usaario a ese formatp
+        dni=dni,
+        email=email,
+        nacionalidad=nacionalidad,
+        telefono=telefono,
+        direccion=direccion
+    )
+    session.add(nuevoCliente)
+
+    session.commit()
+    print("Cliente guardado correctamente")
 
 #1 Ventas realizadas en un mes que se introduzca por pantalla
 def consulta1():
@@ -48,7 +74,9 @@ def consulta2():
 #3 Tasaciones que no se encuentran aceptadas
 def consulta3():
 
-    tasaciones=session.query(Venta).filter(Venta.id_estado!=2).all()
+    #saco el id del estado aceptada y luego saco las tasaciones que no tengan como estado aceptadas
+    estadoAceptadas=session.query(Estado).filter(Estado.nombre=="ACEPTADA").first()
+    tasaciones=session.query(Venta).filter(Venta.id_estado!=estadoAceptadas.id).all()
 
     for tas in tasaciones:
         print(tas)
@@ -76,3 +104,47 @@ def consulta5():
 
     for c in cliente:
         print(c)
+
+def graficoCantidadOroPorCliente():
+
+    clientes=session.query(Cliente).all() #saco todos los clientes
+
+    #saco la suma de la cantidad de oro por cliente
+    oroPorCliente=(session.query(Venta.id_cliente, func.sum(Venta.cantidad))
+                   .group_by(Venta.id_cliente)).all()
+
+    nombresClientes = []
+    cantidadOro = []
+
+#recorro los clientes
+    for cliente in clientes:
+        for id_cliente, cantidad in oroPorCliente: #recorro el id del cliente y la cantidad de la consulta de OroPorCliente
+            if cliente.id==id_cliente:  #si es el mismo cliente se añade el nombre y la cantidad de oro
+                nombresClientes.append(cliente.nombre)
+                cantidadOro.append(cantidad)
+
+    plt.bar(nombresClientes, cantidadOro)
+    plt.title("Cantidad de oro por cliente")
+    plt.xlabel("Nombre")
+    plt.ylabel("Cantidad de oro")
+    plt.show()
+
+def graficoTotalVentaPorMes():
+
+#saco el mes y cuento las ventas por ese mes y lo agrupo por mes
+    ventasPorMes = (session.query(extract("month", Venta.fecha_venta), count(Venta.id))
+                    .group_by(extract('month', Venta.fecha_venta))
+                    .order_by(extract("month", Venta.fecha_venta)).all())
+
+    meses = []
+    totalVentas = []
+
+    for mes, total in ventasPorMes:
+        meses.append(mes),
+        totalVentas.append(total)
+
+    plt.bar(meses, totalVentas)
+    plt.title("Total de venta por mes")
+    plt.xlabel("MES")
+    plt.ylabel("VENTAS")
+    plt.show()

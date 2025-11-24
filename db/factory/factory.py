@@ -23,7 +23,7 @@ def crearEstados():
         session.commit()
         print("Estados creados correctamente")
     else:
-        print("Ya estan todos los estados correctamente")
+        print("Ya estan todos los estados creados")
 
 
 #crear los clientes
@@ -63,7 +63,7 @@ def crearPreciosOro():
     if not ultimoDiaRegistrado:
         fecha = fechaInicio
     else: #sino pues la fecha es la del ultimo dia registrado mas un dia
-        fecha=ultimoDiaRegistrado + timedelta(days=1)
+        fecha=ultimoDiaRegistrado[0] + timedelta(days=1)
 
 
     while fecha<=hoy:
@@ -78,7 +78,7 @@ def crearPreciosOro():
 
     session.commit()
 
-
+    print("Ya estan todos los registros del oro creados y actualizados hasta dia de hoy")
 
 #crear las ventas
 def crearVenta():
@@ -88,8 +88,13 @@ def crearVenta():
     precios = session.query(Cotizacion).all()
     estados = session.query(Estado).all()
 
+#comprobamos que ya se han generado todas las ventas
+    totalVentas = session.query(Venta).count()
+
     if not clientes or not precios or not estados:
         print("Para crear las ventas debes crear primeros los clientes, los precios y los estados")
+    elif totalVentas>=450:
+        print("Ya están todas las ventas creadas")
     else:
         estadoAceptada=session.query(Estado).filter(Estado.nombre=="ACEPTADA").first()
 
@@ -99,7 +104,7 @@ def crearVenta():
             precio = random.choice(precios)
             venta = Venta(id_cliente=cliente.id,
                         id_precio=precio.id,
-                        id_estado=estadoAceptada,
+                        id_estado=estadoAceptada.id,
                         cantidad=random.randint(1,100),
                         fecha_venta=precio.fecha)
             session.add(venta)
@@ -112,7 +117,7 @@ def crearVenta():
             precio = random.choice(precios)
             venta = Venta(id_cliente=cliente.id,
                           id_precio=precio.id,
-                          id_estado=estadoRechazado,
+                          id_estado=estadoRechazado.id,
                           cantidad=random.randint(1, 100),
                           fecha_venta=precio.fecha)
             session.add(venta)
@@ -125,7 +130,7 @@ def crearVenta():
             precio = random.choice(precios)
             venta = Venta(id_cliente=cliente.id,
                         id_precio=precio.id,
-                        id_estado=estadoPendiente,
+                        id_estado=estadoPendiente.id,
                         cantidad=random.randint(1,100),
                         fecha_venta=precio.fecha)
             session.add(venta)
