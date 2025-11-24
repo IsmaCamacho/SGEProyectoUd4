@@ -13,27 +13,31 @@ def insertarCliente():
     print("Has decidido insertar un cliente")
     nombre=input("Introduce el nombre: ")
     apellidos=input("Introduce el apellido: ")
-    fechaNacimiento=input("Introduce la fecha de nacimiento Ej: (20-12-2004): ")
+    fechaNacimiento = input("Introduce la fecha de nacimiento Ej: (20-12-2004): ")
     dni=input("Introduce el DNI: ")
     email=input("Introduce el email: ")
     nacionalidad=input("Introduce la nacionalidad: ")
-    telefono=int(input("Introduce el telefono: "))
+    telefono=input("Introduce el telefono: ")
     direccion=input("Introduce la direccion: ")
 
-    nuevoCliente = Cliente(
-        nombre=nombre,
-        apellidos=apellidos,
-        fecha_nacimiento=datetime.strptime(fechaNacimiento, "%d-%m-%Y").date(), #pasar la fecha que introduce el usaario a ese formatp
-        dni=dni,
-        email=email,
-        nacionalidad=nacionalidad,
-        telefono=telefono,
-        direccion=direccion
-    )
-    session.add(nuevoCliente)
+    try:
+        nuevoCliente = Cliente(
+            nombre=nombre,
+            apellidos=apellidos,
+            fecha_nacimiento=datetime.strptime(fechaNacimiento, "%d-%m-%Y").date(), #pasar la fecha que introduce el usaario a ese formatp
+            dni=dni,
+            email=email,
+            nacionalidad=nacionalidad,
+            telefono=int(telefono),
+            direccion=direccion
+        )
+        session.add(nuevoCliente)
 
-    session.commit()
-    print("Cliente guardado correctamente")
+        session.commit()
+        print("Cliente guardado correctamente")
+    except Exception as e:
+        print(f"Error al guardar el cliente {e}")
+        return #para que vuelva al menu y no se termine el programa
 
 #1 Ventas realizadas en un mes que se introduzca por pantalla
 def consulta1():
@@ -50,6 +54,9 @@ def consulta1():
             print(venta)
     else:
         print("No hay ventas en el mes " + str(mes))
+
+
+
 
 
 #2 Ventas que ha realizado un cliente
@@ -71,6 +78,10 @@ def consulta2():
     else:
         print("No existe ese cliente")
 
+
+
+
+
 #3 Tasaciones que no se encuentran aceptadas
 def consulta3():
 
@@ -81,6 +92,10 @@ def consulta3():
     for tas in tasaciones:
         print(tas)
 
+
+
+
+
 #4 Cliente que más ventas ha realizado
 def consulta4():
 
@@ -89,8 +104,16 @@ def consulta4():
                         .group_by(Venta.id_cliente, Cliente)
                         .order_by(count(Venta.id).desc()).first())
 
-    print("El cliente que mas ventas ha realizado es: ")
-    print(clienteMasVentas)
+#comproobamos que haya ventas
+    if not clienteMasVentas:
+        print("No hay ninguna venta aun")
+    else:
+        print("El cliente que mas ventas ha realizado es: ")
+        print(clienteMasVentas)
+
+
+
+
 
 #5 búsqueda de clientes que hace 3 meses que no realizan una venta.
 def consulta5():
@@ -104,6 +127,11 @@ def consulta5():
 
     for c in cliente:
         print(c)
+
+
+
+
+
 
 def graficoCantidadOroPorCliente():
 
@@ -128,6 +156,10 @@ def graficoCantidadOroPorCliente():
     plt.xlabel("Nombre")
     plt.ylabel("Cantidad de oro")
     plt.show()
+
+
+
+
 
 def graficoTotalVentaPorMes():
 

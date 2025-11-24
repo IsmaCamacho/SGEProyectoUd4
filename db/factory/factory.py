@@ -1,7 +1,9 @@
 from datetime import date, datetime, timedelta
 import random
 from faker import Faker
-from db.config import session
+from sqlalchemy import func
+
+from db.config import session, Session
 from db.models.models import *
 
 fake = Faker("es_ES")
@@ -26,6 +28,8 @@ def crearEstados():
         print("Ya estan todos los estados creados")
 
 
+
+
 #crear los clientes
 def crearClientes():
 
@@ -33,11 +37,11 @@ def crearClientes():
     clientes = session.query(Cliente).all()
 
     if not clientes:
-        telefono = random.randint(111111111, 999999999)
         for i in range(20):
+            telefono = random.randint(111111111, 999999999)
             cliente = Cliente(nombre=fake.first_name(),
                               apellidos=fake.last_name(),
-                              fecha_nacimiento=fake.date_of_birth(minimum_age=18),
+                              fecha_nacimiento=fake.date_of_birth(minimum_age=18), #asi no tengo que controlar que en las ventas sean mayor a 18
                               dni=fake.nif(),
                               email=fake.email(),
                               nacionalidad="España",
@@ -48,6 +52,9 @@ def crearClientes():
         print("Clientes creados correctamente")
     else:
         print("Ya estan todos los clientes creados")
+
+
+
 
 
 def crearPreciosOro():
@@ -79,6 +86,9 @@ def crearPreciosOro():
     session.commit()
 
     print("Ya estan todos los registros del oro creados y actualizados hasta dia de hoy")
+
+
+
 
 #crear las ventas
 def crearVenta():
@@ -136,3 +146,42 @@ def crearVenta():
             session.add(venta)
 
         session.commit()
+
+
+
+
+def cambiarEstadoVenta():
+
+    id=input("Dime el id de la venta que quieres cambiar")
+    try:
+        idVenta=int(id)
+    except:
+        print("Debes introducir un numero")
+        return #para que vuelva al menu
+
+    #saco la venta
+    venta=session.query(Venta).filter(Venta.id==idVenta).first()
+
+#si no existe la venta lo informo
+    if not venta:
+        print("No existe una venta con ese ID")
+    else: #si existe se pide el estado al que quiere cambiarla
+        estadoNuevo=input("Dime el estado nuevo")
+        estado=session.query(Estado).filter(func.upper(Estado.nombre) == estadoNuevo.upper()).first() #obliga a poner func delante de upperEstado.nombre
+
+        #si no existe el estado
+        if not estado:
+            print("No existe ese estado")
+        elif venta.id_estado==estado.id: #si el que dice es el msimo que el que tiene
+            print("Esa venta ya tiene ese estado")
+        else: #sacamos la fecha y el precio del oro hoy y se cambia pero primero compruebo si ya se ha creado la cotizacion hoy
+            cotizacionHoy=session.query(Cotizacion).filter(Cotizacion.fecha==date.today()).first()
+            if not cotizacionHoy:
+                print("No hay cotizacion del oro hoy")
+            else:
+                venta.id_estado=estado.id
+                venta.fecha_venta=cotizacionHoy.fecha
+                venta.id_precio=cotizacionHoy.id
+
+                session.commit()
+                print(f"Estado de la venta {venta.id} actualziada")

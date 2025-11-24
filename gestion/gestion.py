@@ -15,12 +15,21 @@ class Gestor:
               "9) Ver los clientes que hace 3 meses que no realizan una venta\n"
               "10) Insertar nuevo cliente\n"
               "11) Grafico de la cantidad de oro por cliente\n"
-              "12) Grafico de ventas por mes\n")
+              "12) Grafico de ventas por mes\n"
+              "13) Cambiar el estado de una venta\n")
 
     def ejecutarOpcion(self):
+        opcion = 0
         while True:
             self.menu()
-            opcion=int(input("Elige que quieres hacer\n"))
+            try:
+                opcion = int(input("Elige que quieres hacer\n"))
+
+            except ValueError:
+                print("Debes escribir un numero")
+                continue #para que vuelva al menu y a preguntar cual quiere hacer
+
+
             if opcion==1:
                 crearEstados()
             elif opcion==2:
@@ -45,5 +54,8 @@ class Gestor:
                 graficoCantidadOroPorCliente()
             elif opcion==12:
                 graficoTotalVentaPorMes()
+            elif opcion==13:
+                cambiarEstadoVenta()
             else:
+                print("Has decicido salir")
                 return
