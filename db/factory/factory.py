@@ -5,8 +5,10 @@ from sqlalchemy import func
 
 from db.config import session, Session
 from db.models.models import *
+from log.log import *
 
 fake = Faker("es_ES")
+logger = Log()
 
 def crearEstados():
 
@@ -23,9 +25,9 @@ def crearEstados():
                 session.add(estado)
 
         session.commit()
-        print("Estados creados correctamente")
+        logger.log("INFO", "Estados iniciales creados correctamente")
     else:
-        print("Ya estan todos los estados creados")
+        logger.log("WARNING", "Ya estan los estados iniciales creados")
 
 
 
@@ -49,9 +51,9 @@ def crearClientes():
                               direccion=fake.address())
             session.add(cliente)
         session.commit()
-        print("Clientes creados correctamente")
+        logger.log("INFO", "Clientes iniciales creados correctamente")
     else:
-        print("Ya estan todos los clientes creados")
+        logger.log("WARNING", "Ya estan los clientes iniciales creados")
 
 
 
@@ -84,8 +86,7 @@ def crearPreciosOro():
         fecha+=timedelta(days=1)
 
     session.commit()
-
-    print("Ya estan todos los registros del oro creados y actualizados hasta dia de hoy")
+    logger.log("INFO", "Ya estan todos los registros del oro creados y actualizados hasta dia de hoy")
 
 
 
@@ -148,6 +149,37 @@ def crearVenta():
         session.commit()
 
 
+def generar1Venta():
+    id = input("Dime el id del cliente que va a generar la venta")
+    cant = input("Dime la cantidad de oro (en gramos): ")
+    try:
+        idCliente = int(id)
+        cantidad = int(cant)
+    except:
+        logger.log("ERROR", "No introduce cantidad o el id del Cliente de tipo Int")
+        return  # para que vuelva al menu
+
+    #hay que comprobar si existe el cliente
+    clienteExiste = session.query(Cliente).filter(Cliente.id==idCliente).first()
+
+    if not clienteExiste:
+        logger.log("ERROR", "Ese cliente no existe")
+    else:
+        #sacamos los datos de la fecha del precio del dia que genera la venta
+        cotizacionHoy = session.query(Cotizacion).filter(Cotizacion.fecha == date.today()).first()
+
+        #por defecto al entrar una nueva venta, debe ser en estado pendiente. COJO EL ID DEL ESTADO PENDIENTE
+        estado = session.query(Estado).filter(func.upper(Estado.nombre) == "PENDIENTE").first()  # obliga a poner func delante de upperEstado.nombre
+
+        ventaNueva = Venta(id_cliente=idCliente,
+                            id_precio=cotizacionHoy.id,
+                            id_estado=estado.id,
+                            cantidad=cantidad,
+                            fecha_venta=cotizacionHoy.fecha)
+        session.add(ventaNueva)
+        session.commit()
+        logger.log("INFO", "Venta generada correctamente")
+
 
 
 def cambiarEstadoVenta():
@@ -156,7 +188,7 @@ def cambiarEstadoVenta():
     try:
         idVenta=int(id)
     except:
-        print("Debes introducir un numero")
+        logger.log("ERROR", "No introduce el id de la Venta de tipo Int")
         return #para que vuelva al menu
 
     #saco la venta
@@ -164,24 +196,24 @@ def cambiarEstadoVenta():
 
 #si no existe la venta lo informo
     if not venta:
-        print("No existe una venta con ese ID")
+        logger.log("ERROR", "No existe esa venta")
     else: #si existe se pide el estado al que quiere cambiarla
         estadoNuevo=input("Dime el estado nuevo")
         estado=session.query(Estado).filter(func.upper(Estado.nombre) == estadoNuevo.upper()).first() #obliga a poner func delante de upperEstado.nombre
 
         #si no existe el estado
         if not estado:
-            print("No existe ese estado")
+            logger.log("ERROR", f"No existe ese Estado: ${estado.nombre}")
         elif venta.id_estado==estado.id: #si el que dice es el msimo que el que tiene
-            print("Esa venta ya tiene ese estado")
+            logger.log("WARNING", f"No puede cambiar de estado porque esa Venta ${venta.id} ya tiene ese Estado")
         else: #sacamos la fecha y el precio del oro hoy y se cambia pero primero compruebo si ya se ha creado la cotizacion hoy
             cotizacionHoy=session.query(Cotizacion).filter(Cotizacion.fecha==date.today()).first()
             if not cotizacionHoy:
-                print("No hay cotizacion del oro hoy")
+                logger.log("ERROR", "No hay cotización en el dia de hoy")
             else:
                 venta.id_estado=estado.id
                 venta.fecha_venta=cotizacionHoy.fecha
                 venta.id_precio=cotizacionHoy.id
 
                 session.commit()
-                print(f"Estado de la venta {venta.id} actualziada")
+                logger.log("INFO", f"Estado de la venta: ${venta.id} cambiado")

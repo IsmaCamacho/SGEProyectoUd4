@@ -138,7 +138,7 @@ def graficoCantidadOroPorCliente():
     clientes=session.query(Cliente).all() #saco todos los clientes
 
     #saco la suma de la cantidad de oro por cliente
-    oroPorCliente=(session.query(Venta.id_cliente, func.sum(Venta.cantidad))
+    oroPorCliente=(session.query(Venta.id_cliente, func.sum(Venta.cantidad)) #si no pongo func no deja hacer el sum
                    .group_by(Venta.id_cliente)).all()
 
     nombresClientes = []

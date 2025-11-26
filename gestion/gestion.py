@@ -2,12 +2,17 @@ from services.services import *
 from db.factory.factory import *
 
 class Gestor:
+    #sino se han creado los datos por defecto se crean la primera vez que se ejecuta
+    crearEstados()
+    crearPreciosOro()  # automaticamente nada mas ejecutar al menu, se crean las cotizaciones del oro del dia de hoy si no hay
+    crearClientes()
+    crearVenta()
     def menu(self):
         print("\n0) SALIR\n"
               "1) Crear estados\n"
               "2) Crear clientes\n"
-              "3) Crear precios del oro\n"
-              "4) Crear ventas\n"
+              "3) Crear ventas\n"
+              "4) Generar una venta\n"
               "5) Ver las ventas realizadas en un mes\n"
               "6) Ver las ventas que ha realizado un cliente\n"
               "7) Ver las ventas que no están aceptadas\n"
@@ -35,9 +40,9 @@ class Gestor:
             elif opcion==2:
                 crearClientes()
             elif opcion==3:
-                crearPreciosOro()
-            elif opcion==4:
                 crearVenta()
+            elif opcion==4:
+                generar1Venta()
             elif opcion==5:
                 consulta1()
             elif opcion==6:
