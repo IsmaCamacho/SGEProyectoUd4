@@ -4,12 +4,18 @@ from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 
 from sqlalchemy import extract
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql.functions import count, func
 
 from db.config import session, Session
 from db.models.models import *
+from log.log import *
+
+logger = Log()
 
 def insertarCliente():
+    logger.log("INFO", "Intentando insertar un nuevo cliente")
+
     print("Has decidido insertar un cliente")
     nombre=input("Introduce el nombre: ")
     apellidos=input("Introduce el apellido: ")
@@ -20,24 +26,35 @@ def insertarCliente():
     telefono=input("Introduce el telefono: ")
     direccion=input("Introduce la direccion: ")
 
-    try:
-        nuevoCliente = Cliente(
-            nombre=nombre,
-            apellidos=apellidos,
-            fecha_nacimiento=datetime.strptime(fechaNacimiento, "%d-%m-%Y").date(), #pasar la fecha que introduce el usaario a ese formatp
-            dni=dni,
-            email=email,
-            nacionalidad=nacionalidad,
-            telefono=int(telefono),
-            direccion=direccion
-        )
-        session.add(nuevoCliente)
+    existeCliente = session.query(Cliente).filter((Cliente.dni==dni) | (Cliente.email==email) | (Cliente.telefono==telefono))
 
-        session.commit()
-        print("Cliente guardado correctamente")
-    except Exception as e:
-        print(f"Error al guardar el cliente {e}")
-        return #para que vuelva al menu y no se termine el programa
+    if existeCliente:
+        logger.log("ERROR", "Insertar Cliente. DNI, Telefono o email ya existen")
+        return #para vovler al menu principal
+
+    else:
+        try:
+            nuevoCliente = Cliente(
+                nombre=nombre,
+                apellidos=apellidos,
+                fecha_nacimiento=datetime.strptime(fechaNacimiento, "%d-%m-%Y").date(), #pasar la fecha que introduce el usaario a ese formatp
+                dni=dni,
+                email=email,
+                nacionalidad=nacionalidad,
+                telefono=int(telefono),
+                direccion=direccion,
+                activo=True
+            )
+            session.add(nuevoCliente)
+
+            session.commit()
+            logger.log("INFO", f"Insertar Cliente. Cliente {nuevoCliente.nombre} {nuevoCliente.apellidos} guardado correctamente")
+        #esta excepcion la he buscado, he insertado un cliente que ya coincidia en el dni y como es unique ha petado por eso tuve que poner esta excepcion para controlar que no meta un cliente que ya existe
+        except Exception:
+            logger.log("ERROR", "Insertar Cliente. Error al guardar el cliente")
+            return #para que vuelva al menu y no se termine el programa
+
+
 
 #1 Ventas realizadas en un mes que se introduzca por pantalla
 def consulta1():
@@ -52,16 +69,22 @@ def consulta1():
     if ventas:
         for venta in ventas:
             print(venta)
+        logger.log("INFO", f"Consulta 1. ventas realizadas en el mes {mes}")
     else:
-        print("No hay ventas en el mes " + str(mes))
-
+        logger.log("WARNING", f"Consulta 1. No hay ventas en el mes {mes}")
 
 
 
 
 #2 Ventas que ha realizado un cliente
 def consulta2():
-    idcliente = int(input("Dime el cliente que quieres sabeer las ventas"))
+    id = input("Dime el cliente que quieres sabeer las ventas")
+
+    try:
+        idcliente = int(id)
+    except ValueError:
+        logger.log("ERROR", "Consulta 2. No introduce cantidad o el id del Cliente de tipo Int")
+        return
 
     #sacamos si el cliente existe
     clienteExiste=session.query(Cliente).filter(Cliente.id==idcliente).first()
@@ -73,10 +96,11 @@ def consulta2():
         if ventas:
             for venta in ventas:
                 print(venta)
+            logger.log("INFO", f"Consulta 2. Visualizacion de ventas que ha realizado el cliente {clienteExiste.nombre}")
         else:
-            print("Ese cliente no tiene ventas")
+            logger.log("WARNING", f"Consulta 2. Cliente {clienteExiste.nombre} no tiene ventas")
     else:
-        print("No existe ese cliente")
+        logger.log("ERROR", f"Consulta 2. No existe el cliente con id {idcliente}")
 
 
 
@@ -91,6 +115,7 @@ def consulta3():
 
     for tas in tasaciones:
         print(tas)
+    logger.log("INFO", "Consulta 3. Visualizacion de todas las ventas que están aceptadas")
 
 
 
@@ -106,8 +131,9 @@ def consulta4():
 
 #comproobamos que haya ventas
     if not clienteMasVentas:
-        print("No hay ninguna venta aun")
+        logger.log("WARNING", "Consulta 4. No hay ventas registradas")
     else:
+        logger.log("INFO", f"Consulta 4. Cliente con ms ventas") #preguntar a Fran si esto funciona
         print("El cliente que mas ventas ha realizado es: ")
         print(clienteMasVentas)
 
@@ -121,12 +147,13 @@ def consulta5():
 #para restar tres meses
     hace3Meses = date.today() - relativedelta(months=3)
 
-    cliente = (session.query(Cliente)
+    cliente = ((session.query(Cliente)
                .join(Venta, Venta.id_cliente==Cliente.id)
-               .filter(Venta.fecha_venta<hace3Meses)).all()
+               .filter(Venta.fecha_venta<hace3Meses)).distinct().all()) #esta bien poner distinct porque si un cliente tiene 3 ventas antiguas va a salir 3 veces
 
     for c in cliente:
         print(c)
+    logger.log("INFO", "Consulta 5. Visualizacion de los clientes que hace 3 meses que no realizan una venta")
 
 
 
@@ -144,18 +171,27 @@ def graficoCantidadOroPorCliente():
     nombresClientes = []
     cantidadOro = []
 
-#recorro los clientes
-    for cliente in clientes:
-        for id_cliente, cantidad in oroPorCliente: #recorro el id del cliente y la cantidad de la consulta de OroPorCliente
-            if cliente.id==id_cliente:  #si es el mismo cliente se añade el nombre y la cantidad de oro
-                nombresClientes.append(cliente.nombre)
-                cantidadOro.append(cantidad)
+    #comprobamos que hay ventas para poder hacer el gradico
+    if oroPorCliente:
+        logger.log("INFO", "Grafico 1: Cantidad de oro por cliente")
 
-    plt.bar(nombresClientes, cantidadOro)
-    plt.title("Cantidad de oro por cliente")
-    plt.xlabel("Nombre")
-    plt.ylabel("Cantidad de oro")
-    plt.show()
+        # recorro los clientes
+        for cliente in clientes:
+            for id_cliente, cantidad in oroPorCliente:  # recorro el id del cliente y la cantidad de la consulta de OroPorCliente
+                if cliente.id == id_cliente:  # si es el mismo cliente se añade el nombre y la cantidad de oro
+                    nombresClientes.append(cliente.nombre)
+                    cantidadOro.append(cantidad)
+
+        plt.bar(nombresClientes, cantidadOro)
+        plt.title("Cantidad de oro por cliente")
+        plt.xlabel("Nombre")
+        plt.ylabel("Cantidad de oro")
+        plt.show()
+
+    else:
+        logger.log("WARNING", "Grafico 1: No hay ventas registradas para generar el gráfico de oro por cliente")
+
+
 
 
 
@@ -171,12 +207,22 @@ def graficoTotalVentaPorMes():
     meses = []
     totalVentas = []
 
-    for mes, total in ventasPorMes:
-        meses.append(mes),
-        totalVentas.append(total)
+#comrpobamos que ya hay ventas para poder hacer el grafico
+    if ventasPorMes:
+        logger.log("INFO", "Gráfico 2: Total de ventas por mes")
 
-    plt.bar(meses, totalVentas)
-    plt.title("Total de venta por mes")
-    plt.xlabel("MES")
-    plt.ylabel("VENTAS")
-    plt.show()
+        for mes, total in ventasPorMes:
+            meses.append(mes),
+            totalVentas.append(total)
+
+        plt.bar(meses, totalVentas)
+        plt.title("Total de venta por mes")
+        plt.xlabel("MES")
+        plt.ylabel("VENTAS")
+        plt.show()
+
+    else:
+        logger.log("WARNING", "Gráfico 2: No hay ventas registradas para generar el gráfico de ventas por mes")
+
+
+

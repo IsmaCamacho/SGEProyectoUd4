@@ -1,6 +1,47 @@
-[26112025 12:39:21] ---- [WARNING] ---- Ya estan los estados iniciales creados
-[26112025 12:39:21] ---- [INFO] ---- Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
-[26112025 12:39:21] ---- [WARNING] ---- Ya estan los clientes iniciales creados
-[26112025 12:39:50] ---- [WARNING] ---- Ya estan los estados iniciales creados
-[26112025 12:39:50] ---- [INFO] ---- Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
-[26112025 12:39:50] ---- [WARNING] ---- Ya estan los clientes iniciales creados
+[26112025 17:47:55] ---- [INFO] ---- Creación Estados. Estados iniciales creados correctamente
+[26112025 17:47:55] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[26112025 17:47:55] ---- [INFO] ---- Creación Clientes. Clientes iniciales creados correctamente
+[26112025 17:47:55] ---- [INFO] ---- Creación Ventas. Ventas iniciales creadas correctamente (450 ventas generadas)
+[26112025 17:49:22] ---- [INFO] ---- Generar venta. Venta generada correctamente
+[26112025 17:49:37] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 10
+[26112025 17:49:53] ---- [INFO] ---- Consulta 2. Visualizacion de ventas que ha realizado el cliente Manuela
+[26112025 17:50:10] ---- [INFO] ---- Consulta 3. Visualizacion de todas las ventas que están aceptadas
+[26112025 17:50:46] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[26112025 17:50:46] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[26112025 17:50:46] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[26112025 17:50:46] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[26112025 17:51:04] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[26112025 17:51:04] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[26112025 17:51:04] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[26112025 17:51:04] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[26112025 17:51:06] ---- [INFO] ---- Consulta 4. Cliente con ms ventas
+[26112025 17:51:12] ---- [INFO] ---- Consulta 5. Visualizacion de los clientes que hace 3 meses que no realizan una venta
+[26112025 17:51:22] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[26112025 17:52:07] ---- [INFO] ---- Insertar Cliente. Cliente Ismael Camacho guardado correctamente
+[26112025 17:52:15] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[26112025 17:52:49] ---- [INFO] ---- Insertar Cliente. Cliente Ismael Camacho guardado correctamente
+[26112025 17:54:22] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[26112025 17:54:22] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[26112025 17:54:22] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[26112025 17:54:22] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[26112025 17:54:24] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[26112025 17:54:54] ---- [INFO] ---- Insertar Cliente. Cliente Ismael Camacho guardado correctamente
+[26112025 17:58:09] ---- [INFO] ---- Usuario ha salido de la aplicación
+[26112025 17:58:14] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[26112025 17:58:14] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[26112025 17:58:14] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[26112025 17:58:14] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[26112025 17:58:20] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[26112025 17:58:53] ---- [ERROR] ---- Insertar Cliente. DNI, Telefono o email ya existen
+[26112025 17:59:04] ---- [INFO] ---- Grafico 1: Cantidad de oro por cliente
+[26112025 17:59:59] ---- [INFO] ---- Gráfico 2: Total de ventas por mes
+[26112025 18:00:29] ---- [ERROR] ---- Cambiar Estado. No existe esa venta
+[26112025 18:01:03] ---- [INFO] ---- Cambiar Estado. Estado de la venta: 452 cambiado
+[26112025 18:01:31] ---- [ERROR] ---- Cambiar Estado. No existe ese Estado: OTRO
+[26112025 18:01:55] ---- [INFO] ---- Baja Cliente. Cliente dado de baja correctamente
+[26112025 18:02:00] ---- [WARNING] ---- Baja Cliente. Cliente ya estaba dado de baja
+[26112025 18:02:07] ---- [ERROR] ---- Baja Cliente. No existe ese cliente
+[26112025 18:02:17] ---- [ERROR] ---- Alta Cliente. No existe ese cliente
+[26112025 18:02:23] ---- [INFO] ---- Alta Cliente. Cliente dado de alta correctamente
+[26112025 18:02:27] ---- [WARNING] ---- Alta Cliente. Cliente ya estaba dado de alta
+[26112025 18:02:33] ---- [INFO] ---- Usuario ha salido de la aplicación

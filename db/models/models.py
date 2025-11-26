@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, Column, String, Date, ForeignKey
+from sqlalchemy import BigInteger, Column, String, Date, ForeignKey, Boolean
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -16,6 +16,7 @@ class Cliente(Base):
     nacionalidad = Column(String(100), nullable=False)
     telefono = Column(BigInteger, nullable=False, unique=True)
     direccion = Column(String(200), nullable=False)
+    activo = Column(Boolean, nullable=False)
 
     def __repr__(self):
         return (f"Cliente id={self.id}, Nombre: {self.nombre}, apellidos: {self.apellidos}, fecha nacimiento: {self.fecha_nacimiento} "
