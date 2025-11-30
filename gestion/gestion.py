@@ -61,9 +61,12 @@ class Gestor:
                     darBajaCliente()
                 elif opcion == 12:
                     darAltaClienteExistente()
-                else:
+                elif opcion==0:
                     logger.log("INFO", "Usuario ha salido de la aplicación")
                     return
+                else:
+                    logger.log("WARNING", "Opción no válida")
+                    continue
 
             except ValueError:
                 #error al convertir la opción a número

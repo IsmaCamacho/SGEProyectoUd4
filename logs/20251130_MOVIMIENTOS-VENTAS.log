@@ -79,3 +79,15 @@
 [30112025 19:40:48] ---- [ERROR] ---- Generar venta. Ese cliente no existe, es menor de edad o esta inactivo
 [30112025 19:40:53] ---- [INFO] ---- Alta Cliente. Cliente dado de alta correctamente
 [30112025 19:40:56] ---- [INFO] ---- Usuario ha salido de la aplicación
+[30112025 20:02:35] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 20:02:35] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 20:02:35] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 20:02:35] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 20:02:37] ---- [ERROR] ---- Menú. Debes escribir un número
+[30112025 20:02:44] ---- [INFO] ---- Usuario ha salido de la aplicación
+[30112025 20:03:28] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 20:03:28] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 20:03:28] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 20:03:28] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 20:03:30] ---- [ERROR] ---- Menú. Debes escribir un número
+[30112025 20:03:39] ---- [INFO] ---- Usuario ha salido de la aplicación
