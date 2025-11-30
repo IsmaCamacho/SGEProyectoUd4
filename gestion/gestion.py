@@ -37,36 +37,42 @@ class Gestor:
             try:
                 opcion = int(input("Elige que quieres hacer\n"))
 
+                if opcion == 1:
+                    generar1Venta()
+                elif opcion == 2:
+                    consulta1()
+                elif opcion == 3:
+                    consulta2()
+                elif opcion == 4:
+                    consulta3()
+                elif opcion == 5:
+                    consulta4()
+                elif opcion == 6:
+                    consulta5()
+                elif opcion == 7:
+                    insertarCliente()
+                elif opcion == 8:
+                    graficoCantidadOroPorCliente()
+                elif opcion == 9:
+                    graficoTotalVentaPorMes()
+                elif opcion == 10:
+                    cambiarEstadoVenta()
+                elif opcion == 11:
+                    darBajaCliente()
+                elif opcion == 12:
+                    darAltaClienteExistente()
+                else:
+                    logger.log("INFO", "Usuario ha salido de la aplicación")
+                    return
+
             except ValueError:
-                print("Debes escribir un numero")
-                continue #para que vuelva al menu y a preguntar cual quiere hacer
+                #error al convertir la opción a número
+                logger.log("ERROR", "Menú. Debes escribir un número")
+                continue
 
+            except Exception as e:
+                #error interno de las funciones
+                logger.log("ERROR", f"Error inesperado en la ejecución del menú: {e}")
+                print("\nHa ocurrido un error inesperado, vuelve a intentarlo.\n")
+                continue
 
-
-            if opcion==1:
-                generar1Venta()
-            elif opcion==2:
-                consulta1()
-            elif opcion==3:
-                consulta2()
-            elif opcion==4:
-                consulta3()
-            elif opcion==5:
-                consulta4()
-            elif opcion==6:
-                consulta5()
-            elif opcion==7:
-                insertarCliente()
-            elif opcion==8:
-                graficoCantidadOroPorCliente()
-            elif opcion==9:
-                graficoTotalVentaPorMes()
-            elif opcion==10:
-                cambiarEstadoVenta()
-            elif opcion==11:
-                darBajaCliente()
-            elif opcion==12:
-                darAltaClienteExistente()
-            else:
-                logger.log("INFO", "Usuario ha salido de la aplicación")
-                return

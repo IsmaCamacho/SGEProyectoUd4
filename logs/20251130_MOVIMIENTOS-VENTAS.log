@@ -30,3 +30,52 @@
 [30112025 11:39:50] ---- [WARNING] ---- Consulta 1. No hay ventas en el mes 12
 [30112025 11:40:02] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 1
 [30112025 11:40:07] ---- [INFO] ---- Usuario ha salido de la aplicación
+[30112025 14:16:27] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 14:16:27] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 14:16:27] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 14:16:27] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 14:16:30] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 14:16:34] ---- [ERROR] ---- Insertar Cliente. DNI, Telefono o email ya existen
+[30112025 14:25:30] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 14:25:30] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 14:25:30] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 14:25:30] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 14:25:34] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:28:03] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 19:28:03] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 19:28:03] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 19:28:03] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 19:28:14] ---- [ERROR] ---- Generar venta. Ese cliente no existe, es menor de edad o esta inactivo
+[30112025 19:28:28] ---- [ERROR] ---- Generar venta. No introduce cantidad o el id del Cliente de tipo Int
+[30112025 19:28:35] ---- [ERROR] ---- Generar venta. Ese cliente no existe, es menor de edad o esta inactivo
+[30112025 19:28:41] ---- [INFO] ---- Generar venta. Venta generada correctamente
+[30112025 19:28:47] ---- [ERROR] ---- Consulta 1. No introduce el mes de tipo Int
+[30112025 19:28:57] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 11
+[30112025 19:29:08] ---- [WARNING] ---- Consulta 1. No hay ventas en el mes 12
+[30112025 19:29:22] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 2
+[30112025 19:29:28] ---- [ERROR] ---- Consulta 2. No existe el cliente con id 12
+[30112025 19:29:58] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 19:29:58] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 19:29:58] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 19:29:58] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 19:30:10] ---- [ERROR] ---- Consulta 2. Cansulta de ventas de un cliente cancelada: ID no numérico
+[30112025 19:30:18] ---- [WARNING] ---- Consulta 2. Cliente 125 NO existe
+[30112025 19:30:23] ---- [INFO] ---- Consulta 2. Ventas realizadas del cliente 124
+[30112025 19:30:37] ---- [INFO] ---- Consulta 3. Visualizacion de todas las ventas que están aceptadas
+[30112025 19:30:46] ---- [INFO] ---- Consulta 4. Cliente con ms ventas
+[30112025 19:31:00] ---- [INFO] ---- Consulta 5. Visualización de los clientes que hace 3 meses que no realizan una venta
+[30112025 19:31:05] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:31:11] ---- [ERROR] ---- Insertar Cliente. Ningún campo puede estar vacío
+[30112025 19:31:16] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:31:20] ---- [ERROR] ---- Insertar Cliente. El teléfono debe ser un número entero
+[30112025 19:31:23] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:31:48] ---- [ERROR] ---- Insertar Cliente. DNI, Telefono o email ya existen
+[30112025 19:31:53] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:32:16] ---- [ERROR] ---- Insertar Cliente. Error al guardar el cliente
+[30112025 19:32:21] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[30112025 19:32:48] ---- [INFO] ---- Insertar Cliente. Cliente ismaaa camaa guardado correctamente
+[30112025 19:38:08] ---- [ERROR] ---- Cambiar Estado. No existe esa venta
+[30112025 19:40:36] ---- [INFO] ---- Baja Cliente. Cliente dado de baja correctamente
+[30112025 19:40:48] ---- [ERROR] ---- Generar venta. Ese cliente no existe, es menor de edad o esta inactivo
+[30112025 19:40:53] ---- [INFO] ---- Alta Cliente. Cliente dado de alta correctamente
+[30112025 19:40:56] ---- [INFO] ---- Usuario ha salido de la aplicación

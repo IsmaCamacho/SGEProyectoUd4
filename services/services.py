@@ -26,7 +26,18 @@ def insertarCliente():
     telefono=input("Introduce el telefono: ")
     direccion=input("Introduce la direccion: ")
 
-    existeCliente = session.query(Cliente).filter((Cliente.dni==dni) | (Cliente.email==email) | (Cliente.telefono==telefono))
+    if (not nombre or not apellidos or not fechaNacimiento or not dni or
+            not email or not nacionalidad or not telefono or not direccion):
+        logger.log("ERROR", "Insertar Cliente. Ningún campo puede estar vacío")
+        return
+
+    try:
+        telefonoInt = int(telefono)
+    except ValueError:
+        logger.log("ERROR", "Insertar Cliente. El teléfono debe ser un número entero")
+        return
+
+    existeCliente = session.query(Cliente).filter((Cliente.dni==dni) | (Cliente.email==email) | (Cliente.telefono==telefonoInt)).first()
 
     if existeCliente:
         logger.log("ERROR", "Insertar Cliente. DNI, Telefono o email ya existen")
@@ -83,29 +94,32 @@ def consulta1():
 
 #2 Ventas que ha realizado un cliente
 def consulta2():
-    id = input("Dime el cliente que quieres sabeer las ventas")
+    # Ventas que ha realizado un cliente
+
+    print("Información de los clientes: ")
+    clientesTodos = session.query(Cliente).all()
+    for c in clientesTodos:
+        print(c)
 
     try:
-        idcliente = int(id)
+        clienteId = int(input("Introduce el Id del cliente para ver sus ventas."))
     except ValueError:
-        logger.log("ERROR", "Consulta 2. No introduce cantidad o el id del Cliente de tipo Int")
+        logger.log("ERROR", "Consulta 2. Cansulta de ventas de un cliente cancelada: ID no numérico")
         return
 
-    #sacamos si el cliente existe
-    clienteExiste=session.query(Cliente).filter(Cliente.id==idcliente).first()
+    clienteExiste = session.query(Cliente).filter(Cliente.id == clienteId).first()
 
-    #si el cliente existe sacamos las ventas que ha realizado
-    if clienteExiste:
-        ventas=session.query(Venta).filter(Venta.id_cliente==idcliente).all()
-
-        if ventas:
-            for venta in ventas:
-                print(venta)
-            logger.log("INFO", f"Consulta 2. Visualizacion de ventas que ha realizado el cliente {clienteExiste.nombre}")
-        else:
-            logger.log("WARNING", f"Consulta 2. Cliente {clienteExiste.nombre} no tiene ventas")
+    if not clienteExiste:
+        logger.log("WARNING", f"Consulta 2. Cliente {clienteId} NO existe")
     else:
-        logger.log("ERROR", f"Consulta 2. No existe el cliente con id {idcliente}")
+        ventasCliente = session.query(Venta).filter(Venta.id_cliente == clienteId).all()
+
+        if ventasCliente:
+            for v in ventasCliente:
+                print(v)
+            logger.log("INFO", f"Consulta 2. Ventas realizadas del cliente {clienteId}")
+        else:
+            logger.log("WARNING", f"Consulta 2. Sin ventas del cliente {clienteId}")
 
 
 
@@ -196,9 +210,31 @@ def graficoCantidadOroPorCliente():
         logger.log("WARNING", "Grafico 1: No hay ventas registradas para generar el gráfico de oro por cliente")
 
 
+def graficoArribaOtraForma():
 
+    oroPorCliente = (
+        session.query(Venta.id_cliente, Cliente.nombre.label("nombre"), func.sum(Venta.cantidad).label("cantidad"))
+        .join(Cliente, Cliente.id == Venta.id_cliente)
+        .group_by(Venta.id_cliente)
+        .group_by(Cliente.nombre).all())
 
+    if not oroPorCliente:
+        logger.log("WARNING", "Grafico 1: No hay ventas, no se puede generar el gráfico")
+    else:
+        logger.log("INFO", "Grafico 1: Cantidad de oro por cliente")
 
+        nombres = []
+        cantidad = []
+
+        for o in oroPorCliente:
+            nombres.append(o.nombre)
+            cantidad.append(o.cantidad)
+
+        plt.bar(nombres, cantidad)
+        plt.title("CANTIDAD DE ORO POR CLIENTE")
+        plt.xlabel("Nombre")
+        plt.ylabel("Cantidad de oro")
+        plt.show()
 
 
 def graficoTotalVentaPorMes():
