@@ -60,18 +60,23 @@ def insertarCliente():
 def consulta1():
 
     while True:
-        mes=int(input("Introduce el mes que quieres ver las ventas realizas"))
-        if mes>0 and mes<=12:
-            break
+        mes=input("Introduce el mes que quieres ver las ventas realizas (del 1 al 12)")
+        try:
+            mesOk=int(mes)
+            if mesOk > 0 and mesOk <= 12:
+                break
+        except ValueError:
+            logger.log("ERROR", "Consulta 1. No introduce el mes de tipo Int")
+            return
 
-    ventas = session.query(Venta).filter(extract('month', Venta.fecha_venta)==mes).all()
+    ventas = session.query(Venta).filter(extract('month', Venta.fecha_venta)==mesOk).all()
 
     if ventas:
         for venta in ventas:
             print(venta)
-        logger.log("INFO", f"Consulta 1. ventas realizadas en el mes {mes}")
+        logger.log("INFO", f"Consulta 1. ventas realizadas en el mes {mesOk}")
     else:
-        logger.log("WARNING", f"Consulta 1. No hay ventas en el mes {mes}")
+        logger.log("WARNING", f"Consulta 1. No hay ventas en el mes {mesOk}")
 
 
 
@@ -143,18 +148,17 @@ def consulta4():
 
 #5 búsqueda de clientes que hace 3 meses que no realizan una venta.
 def consulta5():
-
-#para restar tres meses
     hace3Meses = date.today() - relativedelta(months=3)
 
-    cliente = ((session.query(Cliente)
-               .join(Venta, Venta.id_cliente==Cliente.id)
-               .filter(Venta.fecha_venta<hace3Meses)).distinct().all()) #esta bien poner distinct porque si un cliente tiene 3 ventas antiguas va a salir 3 veces
+    clientes = (session.query(Cliente)
+                .join(Venta, Venta.id_cliente == Cliente.id)
+                .group_by(Cliente.id)
+                .having(func.max(Venta.fecha_venta) < hace3Meses)
+                .all())
 
-    for c in cliente:
+    for c in clientes:
         print(c)
-    logger.log("INFO", "Consulta 5. Visualizacion de los clientes que hace 3 meses que no realizan una venta")
-
+    logger.log("INFO", "Consulta 5. Visualización de los clientes que hace 3 meses que no realizan una venta")
 
 
 
