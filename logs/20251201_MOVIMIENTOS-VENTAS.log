@@ -1,0 +1,168 @@
+[01122025 10:46:38] ---- [INFO] ---- Creación Estados. Estados iniciales creados correctamente
+[01122025 10:46:38] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:46:38] ---- [INFO] ---- Creación Clientes. Clientes iniciales creados correctamente
+[01122025 10:46:38] ---- [INFO] ---- Creación Ventas. Ventas iniciales creadas correctamente (450 ventas generadas)
+[01122025 10:47:46] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:47:46] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:47:46] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:47:46] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 10:48:09] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:48:09] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:48:09] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:48:09] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 10:50:20] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:50:20] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:50:20] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:50:20] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 10:50:25] ---- [WARNING] ---- Opción de ARMARIOS no válida
+[01122025 10:50:33] ---- [INFO] ---- Usuario ha salido de la aplicacion de ARMARIOS
+[01122025 10:50:40] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:50:40] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:50:41] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:50:41] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 10:58:01] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:58:01] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:58:01] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:58:01] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 10:58:07] ---- [ERROR] ---- Error inesperado en la ejecución del menú: 'gramos' is an invalid keyword argument for Armarios
+[01122025 10:58:39] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 10:58:39] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 10:58:39] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 10:58:39] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:03:26] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 11:03:26] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 11:03:26] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 11:03:26] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:03:34] ---- [INFO] ---- Datos Prueba Armarios. Datos de prubea de la tabla Armarios cargado correctamente
+[01122025 11:21:35] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 11:21:35] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 11:21:35] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 11:21:35] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:21:42] ---- [INFO] ---- Intentando insertar un nuevo cliente
+[01122025 11:22:15] ---- [INFO] ---- Insertar Cliente. Cliente prueba1 prueba1 guardado correctamente
+[01122025 11:22:28] ---- [WARNING] ---- Guardar Oro Cliente. NO tiene oro guardado
+[01122025 11:22:32] ---- [ERROR] ---- Guardar Oro Cliente. Dato introducido no es de tipo númerico
+[01122025 11:22:43] ---- [ERROR] ---- Guardar Oro Cliente. Dato introducido no es de tipo númerico
+[01122025 11:22:49] ---- [WARNING] ---- Guardar Oro Cliente. NO tiene oro guardado
+[01122025 11:42:03] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 11:42:03] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 11:42:04] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 11:42:04] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:42:22] ---- [WARNING] ---- Guardar Oro Cliente. No puedes retirar mas oro del que tienes
+[01122025 11:42:42] ---- [WARNING] ---- Guardar Oro Cliente. No puedes retirar mas oro del que tienes
+[01122025 11:43:57] ---- [WARNING] ---- Guardar Oro Cliente. No puedes retirar mas oro del que tienes
+[01122025 11:46:13] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 11:46:13] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 11:46:13] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 11:46:13] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:46:24] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 11:50:14] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 11:50:14] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 11:50:14] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 11:50:14] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 11:51:04] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 12:05:03] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:05:03] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:05:03] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:05:03] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:05:16] ---- [ERROR] ---- Error inesperado en la ejecución del menú: list indices must be integers or slices, not Armarios
+[01122025 12:05:50] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:05:50] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:05:50] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:05:50] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:05:54] ---- [ERROR] ---- Error inesperado en la ejecución del menú: list indices must be integers or slices, not Armarios
+[01122025 12:07:27] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:07:27] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:07:27] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:07:27] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:07:32] ---- [ERROR] ---- Error inesperado en la ejecución del menú: list indices must be integers or slices, not Armarios
+[01122025 12:07:57] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:07:57] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:07:57] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:07:57] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:08:00] ---- [ERROR] ---- Error inesperado en la ejecución del menú: list indices must be integers or slices, not Row
+[01122025 12:09:11] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:09:11] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:09:11] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:09:11] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:09:17] ---- [ERROR] ---- Error inesperado en la ejecución del menú: 'list' object has no attribute 'id_tipo_armario' and no __dict__ for setting new attributes
+[01122025 12:13:19] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:13:19] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:13:19] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:13:19] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:13:33] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 12:18:29] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:18:29] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:18:29] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:18:29] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:18:40] ---- [WARNING] ---- Historico cliente. Cliente 147 no tiene histórico
+[01122025 12:18:51] ---- [ERROR] ---- Historico cliente. Dato introducido no es de tipo númerico
+[01122025 12:19:16] ---- [INFO] ---- Historico cliente. Consulta del histórico del cliente 146
+[01122025 12:19:26] ---- [INFO] ---- Usuario ha salido de la aplicacion de ARMARIOS
+[01122025 12:21:30] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:21:30] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:21:30] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:21:30] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:21:33] ---- [ERROR] ---- Error inesperado en la ejecución del menú: Multiple rows were found when exactly one was required
+[01122025 12:24:43] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:24:43] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:24:43] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:24:43] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:24:47] ---- [ERROR] ---- Error inesperado en la ejecución del menú: can't set attribute
+[01122025 12:25:41] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:25:41] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:25:41] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:25:41] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:25:45] ---- [ERROR] ---- Error inesperado en la ejecución del menú: can't set attribute
+[01122025 12:25:54] ---- [INFO] ---- Historico cliente. Consulta del histórico del cliente 146
+[01122025 12:25:59] ---- [INFO] ---- Datos Prueba Armarios. Datos de prubea de la tabla Armarios cargado correctamente
+[01122025 12:27:36] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:27:36] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:27:36] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:27:36] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:27:40] ---- [INFO] ---- Datos Prueba Armarios. Datos de prubea de la tabla Armarios cargado correctamente
+[01122025 12:27:44] ---- [WARNING] ---- Datos Prueba Armarios. Datos de prubea de la tabla Armarios ya existen
+[01122025 12:28:15] ---- [ERROR] ---- Guardar Oro Cliente. Opcion introducida no válida
+[01122025 12:28:30] ---- [ERROR] ---- Guardar Oro Cliente. Opcion introducida no válida
+[01122025 12:28:35] ---- [WARNING] ---- Historico cliente. Cliente 46 no tiene histórico
+[01122025 12:28:40] ---- [INFO] ---- Historico cliente. Consulta del histórico del cliente 146
+[01122025 12:28:52] ---- [ERROR] ---- Error inesperado en la ejecución del menú: can't set attribute
+[01122025 12:29:28] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:29:28] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:29:28] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:29:28] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:29:34] ---- [WARNING] ---- Datos Prueba Armarios. Datos de prubea de la tabla Armarios ya existen
+[01122025 12:29:46] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 12:31:03] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 12:31:56] ---- [INFO] ---- Guardar Oro Cliente. Oro y armario actualizado correctamente
+[01122025 12:32:09] ---- [ERROR] ---- Error inesperado en la ejecución del menú: can't set attribute
+[01122025 12:32:52] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:32:52] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:32:52] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:32:52] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:32:55] ---- [ERROR] ---- Error inesperado en la ejecución del menú: list indices must be integers or slices, not Row
+[01122025 12:35:25] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:35:25] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:35:25] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:35:25] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:35:28] ---- [ERROR] ---- Error inesperado en la ejecución del menú: '<=' not supported between instances of 'Armarios' and 'int'
+[01122025 12:36:08] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:36:08] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:36:08] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:36:08] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:36:11] ---- [ERROR] ---- Error inesperado en la ejecución del menú: gramos
+[01122025 12:36:22] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:36:23] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:36:23] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:36:23] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:36:25] ---- [ERROR] ---- Error inesperado en la ejecución del menú: '<=' not supported between instances of 'tuple' and 'int'
+[01122025 12:36:46] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:36:46] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:36:46] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:36:46] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:36:50] ---- [ERROR] ---- Error inesperado en la ejecución del menú: '<=' not supported between instances of 'Armarios' and 'int'
+[01122025 12:37:41] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[01122025 12:37:41] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[01122025 12:37:41] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[01122025 12:37:41] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[01122025 12:37:44] ---- [ERROR] ---- Error inesperado en la ejecución del menú: '<' not supported between instances of 'Armarios' and 'int'

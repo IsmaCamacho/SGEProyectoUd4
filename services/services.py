@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 
+#for v in ventas:
+#    id_venta, nombre, fecha, importe = v
+#    print(id_venta, nombre, fecha.strftime("%d-%m-%Y"), importe)
 from sqlalchemy import extract
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql.functions import count, func
@@ -266,3 +269,278 @@ def graficoTotalVentaPorMes():
 
 
 
+#A PARTIR DE AQUI EXAMEN!
+def guardarOroCliente():
+    #comrpuebo que existen clientes y tipos de armario
+    clientesExiste=session.query(Cliente).all()
+    tiposArmarioExiste=session.query(TipoArmario).all()
+
+    if not clientesExiste or not tiposArmarioExiste:
+        logger.log("WARNING", "Guardar Oro Cliente. NO existen clientes, o tipos de armarios")
+    else:
+        #si hay ambas cosas muestro los clientes para que elija el cliente
+        for c in clientesExiste:
+            print(c)
+
+        try:
+            idCliente = int(input("Introduce el id del cliente del que quieres guardar oro"))
+        except ValueError:
+            logger.log("ERROR", "Guardar Oro Cliente. Dato introducido no es de tipo númerico")
+            return
+
+        #comprobamos si existe el cliente que ha intrtroducido
+        existeCliente = session.query(Cliente).filter(Cliente.id==idCliente).first()
+        if not existeCliente:
+            logger.log("ERROR", "Guardar Oro Cliente. NO existe cliente")
+        else:
+            #si existe el cliente comprobamos si tiene oro guardado
+            oroCliente = session.query(Armarios).filter(Armarios.id_cliente==idCliente).first()
+            if not oroCliente:
+                logger.log("WARNING", "Guardar Oro Cliente. NO tiene oro guardado")
+                try:
+                    cantidadOro = int(input("Introduce la cantidad de oro que quieres guardar en gramos"))
+                except ValueError:
+                    logger.log("ERROR", "Guardar Oro Cliente. Dato introducido no es de tipo númerico")
+                    return
+
+                #se guarda el oro
+                if cantidadOro>0 and cantidadOro<=100:
+                    #se guarda en armario pequeño
+                    guardarOro=Armarios(id_cliente=idCliente,
+                                        id_tipo_armario=1,
+                                        gramos=cantidadOro)
+                    session.add(guardarOro)
+                    guardarHistorico = MovimientosArmarios(cantidad=cantidadOro,
+                                                           operacion="Nuevo armario guardado",
+                                                           fecha=date.today(),
+                                                           id_cliente=idCliente)
+                    session.add(guardarHistorico)
+                    logger.log("INFO", "Guardar Oro Cliente. Oro guardado correctamente")
+
+                elif cantidadOro>100 and cantidadOro<=300:
+                    #se guarda en armario mediano
+                    guardarOro = Armarios(id_cliente=idCliente,
+                                          id_tipo_armario=2,
+                                          gramos=cantidadOro)
+                    session.add(guardarOro)
+                    guardarHistorico = MovimientosArmarios(cantidad=cantidadOro,
+                                                           operacion="Nuevo armario guardado",
+                                                           fecha=date.today(),
+                                                           id_cliente=idCliente)
+                    session.add(guardarHistorico)
+                    logger.log("INFO", "Guardar Oro Cliente. Oro guardado correctamente")
+
+                elif cantidadOro>300 and cantidadOro<=2000:
+                    guardarOro = Armarios(id_cliente=idCliente,
+                                          id_tipo_armario=3,
+                                          gramos=cantidadOro)
+                    session.add(guardarOro)
+                    guardarHistorico = MovimientosArmarios(cantidad=cantidadOro,
+                                                           operacion="Nuevo armario guardado",
+                                                           fecha=date.today(),
+                                                           id_cliente=idCliente)
+                    session.add(guardarHistorico)
+                    logger.log("INFO", "Guardar Oro Cliente. Oro guardado correctamente")
+
+                elif cantidadOro<0 or cantidadOro>2000:
+                    logger.log("WARNING", "Guardar Oro Cliente. Cantidad oro fuera de limites")
+
+                session.commit()
+            else:
+                try:
+                    opcion = int(input("Ya tienes un armario asignado. Elige:\n"
+                                       "1) Retirar Oro\n"
+                                       "2) Guardar Oro\n"))
+                except ValueError:
+                    logger.log("ERROR", "Guardar Oro Cliente. Dato introducido no es de tipo númerico")
+                    return
+
+                if opcion <1 or opcion>2:
+                    logger.log("ERROR", "Guardar Oro Cliente. Opcion introducida no válida")
+                elif opcion==1:
+                    try:
+                        cantidadOroRetirar = int(input("Introduce la cantidad de oro que quieres retirar en gramos"))
+                    except ValueError:
+                        logger.log("ERROR", "Guardar Oro Cliente. Dato introducido no es de tipo númerico")
+                        return
+
+                    #sacamos el la canidad que tiene y le restamos lo que quiere restar
+                    armarioCliente=session.query(Armarios).filter(Armarios.id_cliente==idCliente).first()
+
+                    #si quiere retirar mas oro del que tiene salta un warning se le avisa
+                    if armarioCliente.gramos < cantidadOroRetirar:
+                        logger.log("WARNING", "Guardar Oro Cliente. No puedes retirar mas oro del que tienes")
+                    else:
+                        oroFinal = armarioCliente.gramos - cantidadOroRetirar
+                        if oroFinal > 0 and oroFinal <= 100:
+                            # se guarda en armario pequeño y actualizamos gramos
+                            #comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario!=1:
+                                armarioCliente.id_tipo_armario=1
+
+                            armarioCliente.gramos=oroFinal
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinal,
+                                                                   operacion="Armario actualizado (retirada)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+                        elif oroFinal > 100 and oroFinal <= 300:
+                            # se guarda en armario mediano y actualizamos gramos
+                            # comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario != 2:
+                                armarioCliente.id_tipo_armario = 2
+
+                            armarioCliente.gramos = oroFinal
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinal,
+                                                                   operacion="Armario actualizado (retirada)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+                        elif oroFinal > 300 and oroFinal <= 2000:
+                            # se guarda en armario grande y actualizamos gramos
+                            # comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario != 3:
+                                armarioCliente.id_tipo_armario = 3
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinal,
+                                                                   operacion="Armario actualizado (retirada)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            armarioCliente.gramos = oroFinal
+
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+                        elif oroFinal < 0:
+                            logger.log("WARNING", "Guardar Oro Cliente. Cantidad oro fuera de limites")
+
+                elif opcion==2:
+                    try:
+                        cantidadOroSumar = int(input("Introduce la cantidad de oro que quieres retirar en gramos"))
+                    except ValueError:
+                        logger.log("ERROR", "Guardar Oro Cliente. Dato introducido no es de tipo númerico")
+                        return
+
+                    #sacamos el la canidad que tiene y le sumamos lo que quiere sumar
+                    armarioCliente=session.query(Armarios).filter(Armarios.id_cliente==idCliente).first()
+
+                    oroFinalSumado=armarioCliente.gramos + cantidadOroSumar
+
+                    if oroFinalSumado > 2000:
+                        logger.log("WARNING", "Guardar Oro Cliente. Cantidad oro fuera de limites")
+                    else:
+                        if oroFinalSumado > 0 and oroFinalSumado <= 100:
+                            # se guarda en armario pequeño y actualizamos gramos
+                            #comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario!=1:
+                                armarioCliente.id_tipo_armario=1
+
+                            armarioCliente.gramos=oroFinalSumado
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinalSumado,
+                                                                   operacion="Armario actualizado (ingreso)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+                        elif oroFinalSumado > 100 and oroFinalSumado <= 300:
+                            # se guarda en armario mediano y actualizamos gramos
+                            # comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario != 2:
+                                armarioCliente.id_tipo_armario = 2
+
+                            armarioCliente.gramos = oroFinalSumado
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinalSumado,
+                                                                   operacion="Armario actualizado (ingreso)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+                        elif oroFinalSumado > 300 and oroFinalSumado <= 2000:
+                            # se guarda en armario grande y actualizamos gramos
+                            # comprobamos que tiene el mismo armario u otro
+                            if armarioCliente.id_tipo_armario != 3:
+                                armarioCliente.id_tipo_armario = 3
+                            guardarHistorico = MovimientosArmarios(cantidad=oroFinalSumado,
+                                                                   operacion="Armario actualizado (ingreso)",
+                                                                   fecha=date.today(),
+                                                                   id_cliente=idCliente)
+                            session.add(guardarHistorico)
+                            armarioCliente.gramos = oroFinalSumado
+
+                            session.commit()
+                            logger.log("INFO", "Guardar Oro Cliente. Oro y armario actualizado correctamente")
+
+
+
+def mostrarHistoricoCliente():
+    clientesExiste = session.query(Cliente).all()
+    movimientos = session.query(MovimientosArmarios).all()
+
+    if not clientesExiste or not movimientos:
+        logger.log("WARNING", "Historico cliente. NO existen clientes, o registro de historicos")
+    else:
+        # si hay ambas cosas muestro los clientes para que elija el cliente
+        for c in clientesExiste:
+            print(c)
+
+        try:
+            idCliente = int(input("Introduce el id del cliente del que quieres ver el historico"))
+        except ValueError:
+            logger.log("ERROR", "Historico cliente. Dato introducido no es de tipo númerico")
+            return
+
+        #comrpuebo que existe el cliente
+        clienteExiste = session.query(Cliente).filter(Cliente.id==idCliente).first()
+
+        if not clienteExiste:
+            logger.log("WARNING", f"Historico cliente. Cliente {idCliente} no tiene histórico")
+        else:
+        #saco el historico de ese cliente
+            historicoCliente = (session.query(MovimientosArmarios)
+                                .filter(MovimientosArmarios.id_cliente==idCliente)
+                                .order_by(MovimientosArmarios.fecha.desc()).all())
+            if not historicoCliente:
+                logger.log("WARNING", f"Historico cliente. Cliente {idCliente} no tiene histórico")
+            else:
+                for c in historicoCliente:
+                    print(c)
+                logger.log("INFO", f"Historico cliente. Consulta del histórico del cliente {idCliente}")
+
+
+
+
+
+def comprobarArmarios():
+
+    #sacamos todos los registros de la tabla armarios
+    todosArmarios=session.query(Armarios).all()
+
+    if not todosArmarios:
+        logger.log("ERROR", "Comprobar Armarios. No hay registros de armarios aún")
+    else:
+        #recorro todos los armarios
+        for armario in todosArmarios:
+
+            armarioExacto = session.query(Armarios).filter(armario.id==Armarios.id).first()
+            if (armarioExacto.gramos > 0 and armarioExacto<101) and armarioExacto.id_tipo_armario !=1:
+                armarioExacto.id_tipo_armario=1
+                logger.log("INFO", f"Comprobar Armarios. Modificación del armario {armario.id}")
+                session.commit()
+            elif (armarioExacto.gramos > 101 and armarioExacto<301) and armarioExacto.id_tipo_armario !=2:
+                armarioExacto.id_tipo_armario = 2
+                logger.log("INFO", f"Comprobar Armarios. Modificación del armario {armario.id}")
+                session.commit()
+            elif (armarioExacto.gramos > 301 and armarioExacto<2001) and armarioExacto.id_tipo_armario !=3:
+                armarioExacto.id_tipo_armario = 3
+                logger.log("INFO", f"Comprobar Armarios. Modificación del armario {armario.id}")
+                session.commit()

@@ -281,3 +281,38 @@ def darAltaClienteExistente():
 
 
 
+#A PARTIR DE AQUI EXAMEN!
+def cargarDatosPruebaArmarios():
+
+    hayDatosArmarios = session.query(Armarios).all()
+    if not hayDatosArmarios:
+
+        #comprobamos si hay clientes
+        clientesExisten=session.query(Cliente).all()
+        tiposArmariosExisten=session.query(TipoArmario).all()
+
+        if not clientesExisten or not tiposArmariosExisten:
+            logger.log("WARNING", "Datos Prueba Armarios. NO existen clientes, o tipos de armarios")
+        else:
+            for i in range(50):
+                #hago un random de los clientes
+                cliente = random.choice(clientesExisten)
+                #hago un random del tipo de armarios
+                tipoArmario=random.choice(tiposArmariosExisten)
+                #hago un random de los gramos entre 1 y 500
+                gramos=random.randint(1,500)
+                nuevoArmario=Armarios(id_cliente=cliente.id,
+                                      id_tipo_armario=tipoArmario.id,
+                                      gramos=gramos)
+                session.add(nuevoArmario)
+
+            session.commit()
+            logger.log("INFO", "Datos Prueba Armarios. Datos de prubea de la tabla Armarios cargado correctamente")
+    else:
+        logger.log("WARNING", "Datos Prueba Armarios. Datos de prubea de la tabla Armarios ya existen")
+
+
+
+
+
+

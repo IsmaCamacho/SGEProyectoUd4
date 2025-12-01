@@ -1,3 +1,5 @@
+from time import sleep
+
 from sqlalchemy import BigInteger, Column, String, Date, ForeignKey, Boolean
 from sqlalchemy.orm import declarative_base
 
@@ -22,6 +24,9 @@ class Cliente(Base):
         return (f"Cliente id={self.id}, Nombre: {self.nombre}, apellidos: {self.apellidos}, fecha nacimiento: {self.fecha_nacimiento} "
                 f"dni: {self.dni}, email: {self.email}, nacionalidad: {self.nacionalidad}, telefono: {self.telefono}, direccion: {self.direccion}")
 
+    def __str__(self):
+        return f"CLIENTE ID:{self.id}, Nombre: {self.nombre} {self.apellidos}"
+
 
 class Cotizacion(Base):
     __tablename__ =  "cotizacion"
@@ -33,6 +38,9 @@ class Cotizacion(Base):
 
     def __repr__(self):
         return f"Precio id={self.id}, fecha: {self.fecha}, precio: {self.precio}"
+
+    def __str__(self):
+        return f"PRECIO ID:{self.id}, Fecha: ${self.fecha}, Precio: {self.precio}"
 
 
 class Venta(Base):
@@ -59,3 +67,44 @@ class Estado(Base):
 
     def __repr__(self):
         return f"Estado id={self.id}, nombre: {self.nombre}"
+
+
+#A PARTIR DE AQUI EXAMEN!
+
+class TipoArmario(Base):
+    __tablename__ = "tipo_armario"
+    __table_args__ = {"schema": "proyecto"}
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    descripcion = Column(String(200), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"Tipo Armario id={self.id}, descripcion: {self.descripcion}"
+
+
+class MovimientosArmarios(Base):
+    __tablename__ = "movimientos_armarios"
+    __table_args__ = {"schema": "proyecto"}
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    cantidad = Column(BigInteger, nullable=False)
+    operacion = Column(String(200), nullable=False, unique=True)
+    fecha= Column(Date, nullable=False)
+    id_cliente = Column(BigInteger, ForeignKey("proyecto.cliente.id"), nullable=False)
+
+    def __repr__(self):
+        return (f"Movimientos Armario id={self.id}, cantidad: {self.cantidad}, operacion: {self.operacion}, "
+                f"fecha: {self.fecha}, id_cliente {self.id_cliente}")
+
+class Armarios(Base):
+    __tablename__ = "armarios"
+    __table_args__ = {"schema": "proyecto"}
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    id_cliente = Column(BigInteger, ForeignKey("proyecto.cliente.id"), nullable=False)
+    id_tipo_armario = Column(BigInteger, ForeignKey("proyecto.tipo_armario.id"), nullable=False)
+    gramos = Column(BigInteger, nullable=False)
+
+    def __repr__(self):
+        return (f"Armarios id={self.id}, id cliente: {self.id_cliente}, id tipo armario: {self.id_tipo_armario}, "
+                f"cantidad gramos: {self.gramos}")

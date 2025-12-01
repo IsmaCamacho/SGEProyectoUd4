@@ -29,7 +29,16 @@ class Gestor:
               "9) Grafico de ventas por mes\n"
               "10) Cambiar el estado de una venta\n"
               "11) Dar de baja a un cliente\n"
-              "12) Dar de alta a un cliente existente\n")
+              "12) Dar de alta a un cliente existente\n"
+              "13) ARMARIOS\n")
+
+    def menuArmarios(self):
+        print("\n0)Salir\n"
+              "1) Cargar datos de prueba\n"
+              "2) Guardar oro a un cliente\n"
+              "3) Mostrar historico del cliente\n"
+              "4) Comprobar armarios\n")
+
 
     def ejecutarOpcion(self):
         while True:
@@ -61,6 +70,24 @@ class Gestor:
                     darBajaCliente()
                 elif opcion == 12:
                     darAltaClienteExistente()
+                elif opcion == 13:
+                    while True:
+                        self.menuArmarios()
+                        opcionArmario = int(input("Elige que quieres hacer\n"))
+                        if opcionArmario==1:
+                            cargarDatosPruebaArmarios()
+                        elif opcionArmario==2:
+                            guardarOroCliente()
+                        elif opcionArmario==3:
+                            mostrarHistoricoCliente()
+                        elif opcionArmario==4:
+                            comprobarArmarios()
+                        elif opcionArmario==0:
+                            logger.log("INFO", "Usuario ha salido de la aplicacion de ARMARIOS")
+                            return
+                        else:
+                            logger.log("WARNING", "Opción de ARMARIOS no válida")
+                            continue
                 elif opcion==0:
                     logger.log("INFO", "Usuario ha salido de la aplicación")
                     return

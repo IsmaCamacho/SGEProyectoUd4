@@ -91,3 +91,27 @@
 [30112025 20:03:28] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
 [30112025 20:03:30] ---- [ERROR] ---- Menú. Debes escribir un número
 [30112025 20:03:39] ---- [INFO] ---- Usuario ha salido de la aplicación
+[30112025 20:49:03] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 20:49:03] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 20:49:03] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 20:49:03] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 20:49:09] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 2
+[30112025 20:49:12] ---- [WARNING] ---- Consulta 2. Cliente 3 NO existe
+[30112025 20:49:14] ---- [INFO] ---- Consulta 3. Visualizacion de todas las ventas que están aceptadas
+[30112025 20:49:15] ---- [INFO] ---- Consulta 4. Cliente con ms ventas
+[30112025 21:02:05] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 21:02:05] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 21:02:05] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 21:02:05] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 21:09:50] ---- [WARNING] ---- Creación Estados. Ya estan los estados iniciales creados
+[30112025 21:09:50] ---- [INFO] ---- Creación Cotización. Ya estan todos los registros del oro creados y actualizados hasta dia de hoy
+[30112025 21:09:50] ---- [WARNING] ---- Creación Clientes. Ya estan los clientes iniciales creados
+[30112025 21:09:50] ---- [WARNING] ---- Creación Ventas. Ya estan todas las Ventas iniciales creadas
+[30112025 21:09:57] ---- [INFO] ---- Consulta 1. ventas realizadas en el mes 10
+[30112025 21:10:13] ---- [WARNING] ---- Consulta 2. Cliente 126 NO existe
+[30112025 21:10:17] ---- [WARNING] ---- Consulta 2. Sin ventas del cliente 125
+[30112025 21:10:26] ---- [INFO] ---- Consulta 2. Ventas realizadas del cliente 124
+[30112025 21:10:32] ---- [INFO] ---- Consulta 4. Cliente con ms ventas
+[30112025 21:10:37] ---- [INFO] ---- Consulta 5. Visualización de los clientes que hace 3 meses que no realizan una venta
+[30112025 21:11:02] ---- [WARNING] ---- Opción no válida
+[30112025 21:11:04] ---- [INFO] ---- Usuario ha salido de la aplicación
